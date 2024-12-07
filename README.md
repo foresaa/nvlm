@@ -6,7 +6,7 @@ This repository provides two lightweight HTML pages, **dashboard.html** and **pr
 
 ## Features
 
-### **1. dashboard.html**
+### **1. dashboard [implemented as index.html] **
 
 - Displays summary GPU statistics:
   - GPU Name
@@ -43,7 +43,7 @@ This repository provides two lightweight HTML pages, **dashboard.html** and **pr
 
 You can access the hosted version of these pages at:
 
-- **Dashboard**: [dashboard.html](https://foresaa.github.io/nvlm/dashboard.html)
+- **Dashboard**: [dashboard.html](https://foresaa.github.io/nvlm/index.html)
 - **Processes**: [processes.html](https://foresaa.github.io/nvlm/processes.html)
 
 **Note**: The hosted version demonstrates the static structure and design of the tool. It does not provide real-time GPU statistics or process monitoring.
