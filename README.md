@@ -2,7 +2,7 @@
 
 # NVML GPU Dashboard and Processes Viewer
 
-This repository provides two lightweight HTML pages, **dashboard.html** and **processes.html**, designed to give basic insights into NVIDIA GPU performance and processes. While simple in implementation, these tools lay the groundwork for potential expansion into real-time GPU monitoring services.
+This repository provides two lightweight HTML pages, **[dashboard.html](https://foresaa.github.io/nvlm/index.html)** and **[processes.html](https://foresaa.github.io/nvlm/processes.html)**, designed to give basic insights into NVIDIA GPU performance and processes. While simple in implementation, these tools lay the groundwork for potential expansion into real-time GPU monitoring services.
 
 ## Features
 
