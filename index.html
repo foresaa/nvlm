@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPU Performance Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f4f9;
+        color: #333;
+      }
+
+      header {
+        background: #0078d7;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+      }
+      .container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      h1,
+      h2 {
+        margin-bottom: 1rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+      }
+      table th,
+      table td {
+        padding: 0.75rem;
+        text-align: center;
+        border: 1px solid #ddd;
+      }
+      table th {
+        background: #0078d7;
+        color: white;
+      }
+      table tbody tr:nth-child(odd) {
+        background: #f9f9f9;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 2rem;
+        color: #666;
+      }
+      .button {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.75rem 1.5rem;
+        background: #0078d7;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        text-align: center;
+      }
+      .button:hover {
+        background: #005fa3;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>GPU Performance Dashboard</h1>
+      <p>Monitor your GPU's real-time performance and utilization</p>
+
+      <header>
+        <img
+          src="perpop.png"
+          alt="GPU Dashboard"
+          style="max-width: 10%; height: 80; margin-top: 5px"
+        />
+      </header>
+    </header>
+    <div class="container">
+      <h2>Real-Time GPU Statistics</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody id="gpu-stats">
+          <!-- Real-time stats will be injected here via JavaScript -->
+        </tbody>
+      </table>
+
+      <h2>GPU Processes (Summary)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>PID</th>
+            <th>Type</th>
+            <th>Process Name</th>
+            <th>GPU Memory Usage</th>
+          </tr>
+        </thead>
+        <tbody id="gpu-processes">
+          <!-- Real-time processes will be injected here via JavaScript -->
+        </tbody>
+      </table>
+      <a href="processes.html" class="button">View All GPU Processes</a>
+    </div>
+    <footer class="footer">
+      <p>
+        &copy; 2024 Andel Projects Limited GPU Performance Dashboard. All Rights
+        Reserved.
+      </p>
+    </footer>
+    <script>
+      async function fetchGPUData() {
+        // Placeholder data - Replace with API or backend logic
+        const gpuData = {
+          stats: {
+            "GPU Name": "NVIDIA GeForce RTX 4090",
+            "Utilization (%)": "15",
+            "Memory Used (GB)": "1.5",
+            "Memory Total (GB)": "24.0",
+            "Power Usage (W)": "200",
+            "Temperature (°C)": "55",
+            "Fan Speed (%)": "30",
+          },
+          processes: [
+            {
+              pid: 6324,
+              type: "C+G",
+              name: "C:\\Windows\\explorer.exe",
+              memory: "200 MB",
+            },
+            {
+              pid: 18764,
+              type: "C+G",
+              name: "NVIDIA Overlay.exe",
+              memory: "50 MB",
+            },
+            {
+              pid: 29508,
+              type: "C+G",
+              name: "Microsoft VS Code",
+              memory: "300 MB",
+            },
+            // Add more processes dynamically
+          ],
+        };
+
+        // Update GPU Stats
+        const statsTable = document.getElementById("gpu-stats");
+        statsTable.innerHTML = "";
+        for (const [metric, value] of Object.entries(gpuData.stats)) {
+          const row = document.createElement("tr");
+          row.innerHTML = `<td>${metric}</td><td>${value}</td>`;
+          statsTable.appendChild(row);
+        }
+
+        // Update GPU Processes
+        const processesTable = document.getElementById("gpu-processes");
+        processesTable.innerHTML = "";
+        gpuData.processes.slice(0, 5).forEach((proc) => {
+          // Display up to 5 processes
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                    <td>${proc.pid}</td>
+                    <td>${proc.type}</td>
+                    <td>${proc.name}</td>
+                    <td>${proc.memory}</td>
+                `;
+          processesTable.appendChild(row);
+        });
+      }
+
+      // Update every 5 seconds
+      setInterval(fetchGPUData, 5000);
+      fetchGPUData(); // Initial fetch
+    </script>
+  </body>
+</html>
