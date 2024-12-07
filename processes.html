@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPU Processes - Detailed View</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f4f9;
+        color: #333;
+      }
+      header {
+        background: #0078d7;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+      }
+      .container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        margin-bottom: 1rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+      }
+      table th,
+      table td {
+        padding: 0.75rem;
+        text-align: center;
+        border: 1px solid #ddd;
+      }
+      table th {
+        background: #0078d7;
+        color: white;
+      }
+      table tbody tr:nth-child(odd) {
+        background: #f9f9f9;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 2rem;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>GPU Processes - Detailed View</h1>
+      <p>Complete list of GPU and CPU process details</p>
+    </header>
+    <header>
+      <img
+        src="perpop.png"
+        alt="GPU Dashboard"
+        style="max-width: 10%; height: 80; margin-top: 5px"
+      />
+    </header>
+    <div class="container">
+      <table>
+        <thead>
+          <tr>
+            <th>PID</th>
+            <th>Type</th>
+            <th>Process Name</th>
+            <th>GPU Memory Usage</th>
+            <th>CPU Memory Usage</th>
+          </tr>
+        </thead>
+        <tbody id="gpu-processes">
+          <!-- Real-time processes will be injected here via JavaScript -->
+        </tbody>
+      </table>
+    </div>
+    <footer class="footer">
+      <p>&copy; 2024 GPU Performance Dashboard. All Rights Reserved.</p>
+    </footer>
+    <script>
+      async function fetchAllProcesses() {
+        // Placeholder for API or backend logic
+        const processes = [
+          {
+            pid: 6324,
+            type: "C+G",
+            name: "C:\\Windows\\explorer.exe",
+            gpuMemory: "200 MB",
+            cpuMemory: "100 MB",
+          },
+          {
+            pid: 18764,
+            type: "C+G",
+            name: "NVIDIA Overlay.exe",
+            gpuMemory: "50 MB",
+            cpuMemory: "10 MB",
+          },
+          {
+            pid: 29508,
+            type: "C+G",
+            name: "Microsoft VS Code",
+            gpuMemory: "300 MB",
+            cpuMemory: "500 MB",
+          },
+          {
+            pid: 12345,
+            type: "C",
+            name: "Custom ML Task.exe",
+            gpuMemory: "2 GB",
+            cpuMemory: "1 GB",
+          },
+          {
+            pid: 67890,
+            type: "C",
+            name: "Blender Rendering.exe",
+            gpuMemory: "6 GB",
+            cpuMemory: "3 GB",
+          },
+          // Add all processes dynamically from backend
+        ];
+
+        const tableBody = document.getElementById("gpu-processes");
+        tableBody.innerHTML = ""; // Clear table
+        processes.forEach((proc) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                    <td>${proc.pid}</td>
+                    <td>${proc.type}</td>
+                    <td>${proc.name}</td>
+                    <td>${proc.gpuMemory}</td>
+                    <td>${proc.cpuMemory}</td>
+                `;
+          tableBody.appendChild(row);
+        });
+      }
+
+      fetchAllProcesses(); // Fetch all processes on page load
+    </script>
+  </body>
+</html>
